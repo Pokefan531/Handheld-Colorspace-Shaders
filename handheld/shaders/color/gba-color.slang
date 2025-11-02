@@ -6,7 +6,7 @@
    Author: hunterk
    License: Public domain
 */
-// Shader that replicates the LCD Colorspace from the Gameboy Advance early revisions (up to late 2001) that uses Sharp's manufactured displays. GBA's Sharp displays are the ones that are found on many 40-pin connectors. --
+// Shader that replicates the LCD Colorspace from the Gameboy Advance early revisions (up to late 2001) that uses Sharp's manufactured displays. GBA's Sharp displays are the ones that are found on many 40-pin connectors.
 
 layout(std140, set = 0, binding = 0) uniform UBO
 {
