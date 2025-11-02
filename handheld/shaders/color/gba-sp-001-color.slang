@@ -6,7 +6,7 @@
    Author: hunterk
    License: Public domain
 */
-// Shader that replicates the LCD Colorspace from both Gameboy Advance revision (cicra late 2001) and all Gameboy Advance SP that uses frontlit LCDs, aka AGS-001. This colorspace comes from Panasonic's GBA screen and uses 32-pin connector, and is the most common display you would fine for OG GBA. --
+// Shader that replicates the LCD Colorspace from both Gameboy Advance revision (cicra late 2001) and all Gameboy Advance SP that uses frontlit LCDs, aka AGS-001. This colorspace comes from Panasonic's GBA screen and uses 32-pin connector, and is the most common display you would fine for later GBA and all SP-001.
 
 layout(std140, set = 0, binding = 0) uniform UBO
 {
@@ -31,28 +31,28 @@ We'll define our color weights in this pattern:
 	blr, blg, blb, lum   //alpha channel; we'll hide lum at the end, too
 */
 
-const mat4 GBA_sRGB = mat4(
+const mat4 SP0_sRGB = mat4(
 	0.7875, 0.1175, 0.1775, 0.0,  //red channel
 	0.3025, 0.6325, 0.2125, 0.0,  //green channel
 	-0.09, 0.25, 0.61, 0.0,  //blue channel
 	0.0,  0.0,  0.0,  0.9175   //alpha channel
 ); 
 
-const mat4 GBA_DCI = mat4(
+const mat4 SP0_DCI = mat4(
 	0.665, 0.14, 0.1825, 0.0,  //red channel
 	0.36, 0.62, 0.245, 0.0,  //green channel
 	-0.025, 0.24, 0.5725, 0.0,  //blue channel
 	0.0,  0.0,  0.0,  0.975  //alpha channel
 );
 
-const mat4 GBA_Adobe = mat4(
+const mat4 SP0_Adobe = mat4(
 	0.595, 0.1175, 0.1725, 0.0,  //red channel
 	0.395, 0.6325, 0.23, 0.0,  //green channel
 	0.01, 0.25, 0.5975, 0.0,  //blue channel
 	0.0,  0.0,  0.0,  1.0   //alpha channel
 ); 
 
-const mat4 GBA_Rec2020 = mat4(
+const mat4 SP0_Rec2020 = mat4(
 	0.5375, 0.165, 0.18, 0.0,  //red channel
 	0.405, 0.605, 0.25, 0.0,  //green channel
 	0.055, 0.23, 0.57, 0.0,  //blue channel
@@ -70,10 +70,10 @@ void main()
 	gl_Position = global.MVP * Position;
 	vTexCoord = TexCoord;
 
-	if (color_mode == 1) profile = GBA_sRGB;
-	else if (color_mode == 2) profile = GBA_DCI;
-	else if (color_mode == 3) profile = GBA_Adobe;
-	else if (color_mode == 4) profile = GBA_Rec2020;
+	if (color_mode == 1) profile = SP0_sRGB;
+	else if (color_mode == 2) profile = SP0_DCI;
+	else if (color_mode == 3) profile = SP0_Adobe;
+	else if (color_mode == 4) profile = SP0_Rec2020;
 }
 
 #pragma stage fragment
