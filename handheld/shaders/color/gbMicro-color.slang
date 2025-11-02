@@ -6,7 +6,7 @@
    Author: hunterk
    License: Public domain
 */
-// Shader that replicates the LCD Colorspace from a Gameboy Micro (OXY-001) --
+// Shader that replicates the LCD Colorspace from a Gameboy Micro (OXY-001).
 
 layout(std140, set = 0, binding = 0) uniform UBO
 {
