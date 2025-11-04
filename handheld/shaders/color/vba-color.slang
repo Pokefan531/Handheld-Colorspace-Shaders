@@ -17,7 +17,7 @@ layout(std140, set = 0, binding = 0) uniform UBO
 	float mode;
 } global;
 
-#pragma parameter mode "Reduce Contrast to match VBA/No$GBA filter" 0.0 0.0 1.0 1.0
+#pragma parameter mode "Reduce Contrast to match VBA/No$GBA filter" 1.0 0.0 1.0 1.0
 int color_mode = int(global.mode);
 
 #define target_gamma 1.45
