@@ -21,8 +21,5 @@ BSUBPIX_G = "0"
 BSUBPIX_B = "1"
 gain = "1"
 gamma = "3.75"
-blacklevel = "0"
-ambient = "0.02"
-BGR = "0"
-color_mode = 2
-darken_screen = "0"
+BGR = "1"
+
