@@ -1,0 +1,14 @@
+shaders = "3"
+
+shader0 = ../../handheld/shaders/color/gba-gamma.slang
+filter_linear0 = false
+scale_type0 = source
+scale0 = 1.0
+shader1 = ../../handheld/shaders/color/gba-color.slang
+filter_linear1 = false
+scale_type1 = source
+scale1 = 1.0
+shader2 = "../../handheld/shaders/retro-v2.slang"
+filter_linear2 = "false"
+
+RETRO_PIXEL_SIZE = "0.840000"
