@@ -4,6 +4,7 @@
 // Modified by Pokefan531
 // This gamma ramp is used to use GBA's LCD gamma curves, as both the GBA and the SP-001 uses its own curve that isn't a typical pure power gamma curve even if almost close with less contrast. This is also presented without black compensation, so full visible curves shown.
 // A gamma can be adjusted as GBA's gamma can vary depending on the light source angle. Top light angle is darker while the bottom light angle is lighter. On Adjust Gamma, GBA can go from -0.5 to 0.5 from light to dark by light angle, while the SP-001 can range from -0.6 to 0.6 on the Adjust Gamma settings.
+// Gamma Ramp 2 uses the color temperature on the greyscales that my GBA sharp LCD unit shows. A slight red tint. The SP001 from my unit isn't yet figured out due to difficulty unlike the GBA, so best to 1 for SP001 ramp look. Gameboy Micro has a different ramp close to normal, so use 0 with a Micro shader.
 
 layout(push_constant) uniform Push
 {
