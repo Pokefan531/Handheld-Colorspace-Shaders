@@ -1,4 +1,4 @@
-This folder is meant to be dragged inside the "shaders_glsl" folder within Retroarch shader directory.
+This folder's content is meant to be dragged inside the "shaders_glsl" folder within Retroarch shader directory. The entire folder should not be dragged inside the folder, but the content inside should.
 
 This shader is meant to use under GL Retroarch driver for those who can't use slang shaders due to lack of support of GLCore in Retroarch currently and can't either have access to Vulkan, or have poor Vulkan support. These shaders work on any OpenGL 2.0 or GLES 2.0 capable GPUs.
 
