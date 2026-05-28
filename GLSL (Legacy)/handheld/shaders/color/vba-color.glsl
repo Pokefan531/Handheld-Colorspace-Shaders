@@ -7,9 +7,17 @@
 
 // Shader that replicates the LCD dynamics from a GameBoy Advance based from VBA-M and No$GBA.
 
+// Compatibility #ifdefs needed for parameters
+#ifdef GL_ES
+#define COMPAT_PRECISION mediump
+#else
+#define COMPAT_PRECISION
+#endif
+
 #pragma parameter mode "Reduce Contrast to match VBA/No$GBA filter" 1.0 0.0 1.0 1.0
 #ifdef PARAMETER_UNIFORM
-uniform float mode;
+// All parameter floats need to have COMPAT_PRECISION in front of them
+uniform COMPAT_PRECISION float mode;
 #else
 #define mode 1.0
 #endif

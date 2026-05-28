@@ -7,11 +7,19 @@
 
 // Shader that replicates the Vivid mode of Nintendo Switch OLED Model.
 
+// Compatibility #ifdefs needed for parameters
+#ifdef GL_ES
+#define COMPAT_PRECISION mediump
+#else
+#define COMPAT_PRECISION
+#endif
+
 #pragma parameter mode "Color Profile (1=sRGB, 2=DCI, 3=Adobe, 4=Rec2020)" 1.0 1.0 4.0 1.0
 #pragma parameter white_toggle "Full White Scale" 1.0 0.0 1.0 1.0
 #ifdef PARAMETER_UNIFORM
-uniform float mode;
-uniform float white_toggle;
+// All parameter floats need to have COMPAT_PRECISION in front of them
+uniform COMPAT_PRECISION float mode;
+uniform COMPAT_PRECISION float white_toggle;
 #else
 #define mode 1.0
 #define white 1.0

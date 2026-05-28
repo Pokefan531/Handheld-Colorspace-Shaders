@@ -8,9 +8,17 @@
 // Shader that replicates the Nintendo Switch Online's GBC color filter.
 // (Requires to use the nso-gbc-gamma shader from the folder before loading this shader. Or use a preset from color-mod folder to load automatically)
 
+// Compatibility #ifdefs needed for parameters
+#ifdef GL_ES
+#define COMPAT_PRECISION mediump
+#else
+#define COMPAT_PRECISION
+#endif
+
 #pragma parameter black_level "Raise Black Levels to NSO-GBC filter" 1.0 0.0 1.0 1.0
 #ifdef PARAMETER_UNIFORM
-uniform float black_level;
+// All parameter floats need to have COMPAT_PRECISION in front of them
+uniform COMPAT_PRECISION float black_level;
 #else
 #define black_level 1.0
 #endif

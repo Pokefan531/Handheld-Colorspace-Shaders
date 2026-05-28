@@ -7,6 +7,13 @@
 
 // Shader that replicates the Nintendo Switch Online's GBA color filter.
 
+// Compatibility #ifdefs needed for parameters
+#ifdef GL_ES
+#define COMPAT_PRECISION mediump
+#else
+#define COMPAT_PRECISION
+#endif
+
 #define target_gamma 2.2
 #define display_gamma 2.2
 

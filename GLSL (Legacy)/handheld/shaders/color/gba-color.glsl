@@ -7,9 +7,17 @@
 
 // Shader that replicates the LCD Colorspace from the Gameboy Advance early revisions (up to late 2001) that uses Sharp's manufactured displays. GBA's Sharp displays are the ones that are found on many 40-pin connectors.
 
+// Compatibility #ifdefs needed for parameters
+#ifdef GL_ES
+#define COMPAT_PRECISION mediump
+#else
+#define COMPAT_PRECISION
+#endif
+
 #pragma parameter mode "Color Profile (1=sRGB, 2=DCI, 3=Adobe, 4=Rec2020)" 1.0 1.0 4.0 1.0
 #ifdef PARAMETER_UNIFORM
-uniform float mode;
+// All parameter floats need to have COMPAT_PRECISION in front of them
+uniform COMPAT_PRECISION float mode;
 #else
 #define mode 1.0
 #endif

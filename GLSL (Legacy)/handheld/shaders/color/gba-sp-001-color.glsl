@@ -7,9 +7,17 @@
 
 // Shader that replicates the LCD Colorspace from both Gameboy Advance revision (cicra late 2001) and all Gameboy Advance SP that uses frontlit LCDs, aka AGS-001. This colorspace comes from Panasonic's GBA screen and uses 32-pin connector, and is the most common display you would fine for later GBA and all SP-001.
 
+// Compatibility #ifdefs needed for parameters
+#ifdef GL_ES
+#define COMPAT_PRECISION mediump
+#else
+#define COMPAT_PRECISION
+#endif
+
 #pragma parameter mode "Color Profile (1=sRGB, 2=DCI, 3=Adobe, 4=Rec2020)" 1.0 1.0 4.0 1.0
 #ifdef PARAMETER_UNIFORM
-uniform float mode;
+// All parameter floats need to have COMPAT_PRECISION in front of them
+uniform COMPAT_PRECISION float mode;
 #else
 #define mode 1.0
 #endif

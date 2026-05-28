@@ -2,6 +2,13 @@
 // Modified by Pokefan531
 // This gamma ramp is used to correct the gamma curves for each RGB channels that the filter uses from Nintendo Switch Online GBC filter. It uses colder gamma ramps and helps out to replicate the look when loading the NSO-GBC shader afterwards.
 
+// Compatibility #ifdefs needed for parameters
+#ifdef GL_ES
+#define COMPAT_PRECISION mediump
+#else
+#define COMPAT_PRECISION
+#endif
+
 #if defined(VERTEX)
 attribute vec4 VertexCoord;
 attribute vec4 TexCoord;

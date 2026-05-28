@@ -2,12 +2,20 @@
 // Modified by Pokefan531
 // This gamma ramp is used to correct the gamma curves for each RGB channels that the filter uses from Nintendo Switch Online GBA filter. It darkens the gamma that came default for NSO GBA.
 
+// Compatibility #ifdefs needed for parameters
+#ifdef GL_ES
+#define COMPAT_PRECISION mediump
+#else
+#define COMPAT_PRECISION
+#endif
+
 #pragma parameter gamma_mode "Gamma Ramp: 0=Raw, 1=NSO-GBA" 1.0 0.0 2.0 1.0
 #pragma parameter adjust_gamma "Adjust Gamma (Darker-Brighter)" 0.0 -1.0 1.0 0.05
 
 #ifdef PARAMETER_UNIFORM
-uniform float gamma_mode;
-uniform float adjust_gamma;
+// All parameter floats need to have COMPAT_PRECISION in front of them
+uniform COMPAT_PRECISION float gamma_mode;
+uniform COMPAT_PRECISION float adjust_gamma;
 #else
 #define gamma_mode 1.0
 #define adjust_gamma 0.0

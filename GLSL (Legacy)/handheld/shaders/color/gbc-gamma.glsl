@@ -3,12 +3,20 @@
 // This gamma ramp is used to use GBC's LCD gamma curves, as it doesn't use the standard gamma. The GBC screen has a brighter image overall, with the dark shadows being darker for a more contrast look from the display.
 // A gamma can be adjusted as GBC's gamma can vary depending on the light source angle. Top light angle is brighter while the bottom light angle is darker. Still is overall brighter than raw RGB gamma ramp.
 
+// Compatibility #ifdefs needed for parameters
+#ifdef GL_ES
+#define COMPAT_PRECISION mediump
+#else
+#define COMPAT_PRECISION
+#endif
+
 #pragma parameter gamma_mode "Gamma Ramp: 0=Raw, 1=GBC" 1.0 0.0 1.0 1.0
 #pragma parameter adjust_gamma "Adjust Gamma (Darker-Brighter)" 0.0 -1.0 1.25 0.05
 
 #ifdef PARAMETER_UNIFORM
-uniform float gamma_mode;
-uniform float adjust_gamma;
+// All parameter floats need to have COMPAT_PRECISION in front of them
+uniform COMPAT_PRECISION float gamma_mode;
+uniform COMPAT_PRECISION float adjust_gamma;
 #else
 #define gamma_mode 1.0
 #define adjust_gamma 0.0
@@ -85,7 +93,7 @@ void main()
     out_g = OGGamma[RampG];
     out_b = OGGamma[RampB];
   }
-  else
+  else if (g_mode == 1)
   {
     out_r = GBCGamma[RampR];
     out_g = GBCGamma[RampG];

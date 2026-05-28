@@ -3,12 +3,20 @@
 // This gamma ramp is used to use GBA's LCD gamma curves, as both the GBA and the SP-001 uses its own curve that isn't a typical pure power gamma curve even if almost close with different contrast. This is also presented without black compensation, so full visible curves shown.
 // A gamma can be adjusted as GBA's gamma can vary depending on the light source angle. Top light angle is darker while the bottom light angle is lighter. On Adjust Gamma, GBA can go from -0.85 to 1.25 from light to dark by light angle, while the SP-001 can range from -0.6 to 0.6 on the Adjust Gamma settings.
 
+// Compatibility #ifdefs needed for parameters
+#ifdef GL_ES
+#define COMPAT_PRECISION mediump
+#else
+#define COMPAT_PRECISION
+#endif
+
 #pragma parameter gamma_mode "Gamma Ramp: 0=Raw, 1=GBA, 2=SP001" 1.0 0.0 2.0 1.0
 #pragma parameter adjust_gamma "Adjust Gamma (Darker-Brighter)" 0.0 -1.0 1.25 0.05
 
 #ifdef PARAMETER_UNIFORM
-uniform float gamma_mode;
-uniform float adjust_gamma;
+// All parameter floats need to have COMPAT_PRECISION in front of them
+uniform COMPAT_PRECISION float gamma_mode;
+uniform COMPAT_PRECISION float adjust_gamma;
 #else
 #define gamma_mode 1.0
 #define adjust_gamma 0.0
@@ -101,7 +109,7 @@ void main()
     out_g = GBAGamma[RampG];
     out_b = GBAGamma[RampB];
   }
-  else
+  else if (g_mode == 2)
   {
     out_r = GBASPGamma[RampR];
     out_g = GBASPGamma[RampG];
